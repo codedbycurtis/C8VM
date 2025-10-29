@@ -551,7 +551,7 @@ Clay_RenderCommandArray CreditsLayout_CreateLayout(LayoutData *data)
             }));
 
         CLAY_TEXT(
-            CLAY_STRING("\"C8VM\" by Curtis Caulfield.\nhttps://curtiscaulfield.com\nLicensed under the MIT License."),
+            CLAY_STRING("\"C8VM\" by Curtis Caulfield.\nhttps://curtiscaulfield.com\nLicensed under the MIT license."),
             CLAY_TEXT_CONFIG({
                 .fontId = FONT_PIXELOID_SANS_16PT,
                 .fontSize = 16,
@@ -560,7 +560,7 @@ Clay_RenderCommandArray CreditsLayout_CreateLayout(LayoutData *data)
             }));
 
         CLAY_TEXT(
-            CLAY_STRING("\"Pixeloid Sans\" by GGBotNet.\nhttps://ggbot.itch.io/pixeloid-font\nLicensed under the SIL Open Font License."),
+            CLAY_STRING("\"Pixeloid Sans\" by GGBotNet.\nhttps://ggbot.net\nLicensed under the SIL Open Font License."),
             CLAY_TEXT_CONFIG({
                 .fontId = FONT_PIXELOID_SANS_16PT,
                 .fontSize = 16,

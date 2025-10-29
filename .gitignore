@@ -8,6 +8,7 @@
 !screenshots/**/*
 !src/
 !src/**/*
+!.gitattributes
 !.gitignore
 !CMakeLists.txt
 !LICENSE.md

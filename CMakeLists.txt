@@ -25,26 +25,26 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(SDL SDL_ttf)
 
 add_executable(
-	${PROJECT_NAME}
-	src/vm.h
-	src/vm.c
-	src/arena.h
-	src/arena.c
-	src/core.h
-	src/clay.h
-	src/clay_renderer_SDL3.c
-	src/components.h
-	src/components.c
-	src/layouts.h
-	src/layouts.c
-	src/main.c
+		${PROJECT_NAME}
+		src/vm.h
+		src/vm.c
+		src/arena.h
+		src/arena.c
+		src/core.h
+		src/clay.h
+		src/clay_renderer_SDL3.c
+		src/components.h
+		src/components.c
+		src/layouts.h
+		src/layouts.c
+		src/main.c
 )
 
 target_link_libraries(
-	${PROJECT_NAME}
-	PRIVATE
-	SDL3::SDL3
-	SDL3_ttf::SDL3_ttf
+		${PROJECT_NAME}
+		PRIVATE
+		SDL3::SDL3
+		SDL3_ttf::SDL3_ttf
 )
 
 add_custom_target(
