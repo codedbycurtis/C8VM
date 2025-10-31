@@ -27,7 +27,7 @@ static const uint8_t DEFAULT_FONT[] = {
 // Clears the display.
 static void C8_00E0(C8_Instance *instance)
 {
-	memset(&instance->framebuffer, 0, sizeof(instance->framebuffer));
+	memset(instance->framebuffer, 0, sizeof(instance->framebuffer));
 }
 
 // Returns from the current subroutine.
@@ -129,12 +129,13 @@ static void C8_8XY5(C8_Instance *instance)
 // The bit that was shifted out is stored in the V(F) register.
 static void C8_8XY6(C8_Instance *instance)
 {
-	instance->v[0xF] = instance->v[instance->instruction.x] & 0x01;
+	const uint8_t flag = instance->v[instance->instruction.x] & 0x01;
 	if (!instance->config.useParameterisedShift)
 	{
 		instance->v[instance->instruction.x] = instance->v[instance->instruction.y];
 	}
 	instance->v[instance->instruction.x] >>= 1;
+	instance->v[0xF] = flag;
 }
 
 static void C8_8XY7(C8_Instance *instance)
@@ -146,12 +147,13 @@ static void C8_8XY7(C8_Instance *instance)
 
 static void C8_8XYE(C8_Instance *instance)
 {
-	instance->v[0xF] = (instance->v[instance->instruction.x] & 0x80) >> 7;
+	const uint8_t flag = instance->v[instance->instruction.x] >> 7;
 	if (!instance->config.useParameterisedShift)
 	{
 		instance->v[instance->instruction.x] = instance->v[instance->instruction.y];
 	}
 	instance->v[instance->instruction.x] <<= 1;
+	instance->v[0xF] = flag;
 }
 
 // Skips the next instruction if the value in V(x) is not equal to the value in V(y).
@@ -498,6 +500,7 @@ void C8_NotifyKeyEvent(C8_Instance *instance, const uint8_t key, const bool isKe
 
 	instance->v[instance->awaitKeyPressRegister] = key;
 	instance->awaitKeyPressRegister = NOT_AWAITING;
+	instance->pc += INSTRUCTION_WIDTH;
 }
 
 bool C8_LoadProgram(C8_Instance *instance, const char *filePath, char **error)
